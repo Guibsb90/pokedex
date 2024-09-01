@@ -45,9 +45,9 @@ import { useLazyGetPokemonByNameQuery } from "../API/api/api";
     <button onClick={handleClick} className="mt-4 px-6 py-2 rounded-[16px] hover:bg-slate-500 bg-slate-700 text-slate-200 border-none w-1/3 text-center mx-auto">Pesquisar</button>
 
     {isLoading && <div className="mx-auto text-3xl text-zinc-200">Carregando...</div>}
-    {data && (
+    {showData && data && (
       <div className="mt-14 mx-auto bg-amber-400 rounded-lg p-4">
-        <div className="bg-slate-700 p-2 shadow-[0_0_22px_black] rounded-lg border border-dashed">
+        <div className="bg-slate-700 p-1 shadow-[0_0_22px_black] rounded-lg border border-dashed">
         <h2 className=" text-slate-200 text-5xl mb-4 ">{data.name}</h2>
         <img className="w-[200px] h-[200px]" src={data.sprites.front_default} alt={data.name}/>
         <p className=" text-slate-200">Altura: {data.height}</p>
