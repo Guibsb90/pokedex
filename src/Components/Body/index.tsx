@@ -3,10 +3,22 @@ import React from "react"
 import { useState } from "react";
 import { useLazyGetPokemonByNameQuery } from "../API/api/api";
 
+  type Abilities = {
+    ability:{
+      name: string
+    }
+  }
 
-const PokemonSearch : React.FC = () => {
+  type Tipos = {
+    type:{
+      name: string
+    }
+
+  }
+
+  const PokemonSearch : React.FC = () => {
   const [pokemonName, setPokemonName] = useState('');
-  const [showData, setShowData] = useState(false);
+  const [showData , setShowData] = useState(false);
 
 
   const  [trigger ,{data, isLoading }] = useLazyGetPokemonByNameQuery();
@@ -16,6 +28,7 @@ const PokemonSearch : React.FC = () => {
   };
 
   const handleClick = () => {
+
     setShowData(false);
     if (pokemonName){
       trigger(pokemonName);
@@ -41,7 +54,7 @@ const PokemonSearch : React.FC = () => {
         <p className=" text-slate-200">Peso: {data.weight}</p>
         <ul className=" text-orange-300">
         <p className=" text-slate-200">Habilidades:</p>
-          {data.abilities.map((abilityObj )=>(
+          {data.abilities.map((abilityObj : Abilities )=>(
         <li className="text-center" key={abilityObj.ability.name}>{abilityObj.ability.name}
         </li>)
 
@@ -49,7 +62,7 @@ const PokemonSearch : React.FC = () => {
         </ul>
         <p className=" text-slate-200">Classe(s):</p>
         <ul className="text-slate-200">
-          {data.types.map((typeObj) =>(
+          {data.types.map((typeObj : Tipos) =>(
             <li className="text-orange-300 text-center" key={typeObj.type.name}>{typeObj.type.name}</li>
           )
 
